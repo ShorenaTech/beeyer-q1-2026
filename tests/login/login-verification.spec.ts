@@ -1,20 +1,29 @@
 import { test, expect } from "@playwright/test";
 import { goToLoginPage, goToStartPage } from "../../actions/navigation";
+import LoginPage from "../../pages/login/LoginPage";
+
+test.beforeAll(async () => {
+  console.log("Starting login tests");
+});
+
+test.beforeEach(async ({ page }) => {
+  await test.step("Navigate to Start Page", async () => {
+    await goToStartPage(page);
+  });
+
+  const loginPage = await test.step("Navigate to the login Page", async () =>
+    goToLoginPage(page));
+
+  await test.step("Wait until login Page is loaded", async () => {
+    await loginPage.waitUntilPageIsLoaded();
+  });
+});
 
 test(
   "Verify login functionality",
   { tag: ["@smoke", "@regression", "@login"] },
   async ({ page }) => {
-    await test.step("Navigate to Start Page", async () => {
-      await goToStartPage(page);
-    });
-
-    const loginPage = await test.step("Navigate to the login Page", async () =>
-      goToLoginPage(page));
-
-    await test.step("Wait until login Page is loaded", async () => {
-      await loginPage.waitUntilPageIsLoaded();
-    });
+    const loginPage = new LoginPage(page);
 
     await test.step("Input username", async () => {
       await loginPage.inputUserName("students");
@@ -39,3 +48,7 @@ test(
     });
   },
 );
+
+test.afterAll(async () => {
+  console.log("Finished login tests");
+});
