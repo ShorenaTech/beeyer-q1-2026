@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../../actions/navigation.fixture";
 import { goToLoginPage, goToStartPage } from "../../actions/navigation";
 import LoginPage from "../../pages/login/LoginPage";
 
