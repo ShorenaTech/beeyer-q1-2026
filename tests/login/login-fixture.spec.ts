@@ -1,4 +1,4 @@
-import { test, expect } from "../../actions/navigation.fixture";
+import { test, expect } from "../../fixtures/navigation.fixture";
 test(
   "Verify a user can login to the application with valid credentials",
   { tag: ["@smoke", "@regression", "@login", "@positive"] },

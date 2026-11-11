@@ -1,4 +1,4 @@
-import { test, expect } from "../../actions/navigation.fixture";
+import { test, expect } from "../../fixtures/navigation.fixture";
 import { goToLoginPage, goToStartPage } from "../../actions/navigation";
 import LoginPage from "../../pages/login/LoginPage";
 
